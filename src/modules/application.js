@@ -1,24 +1,41 @@
 import DOM from './domManipulation';
-import Project from './Project';
-import Task from './Task';
+import { Task, Project } from './appItems'
+import { List, TaskList, ProjectList } from './lists';
 
 //TODO Application Module
 const application = (() => {
+    let appData = {}
 
-    const init = (marker,index) => {
-        alert('App')
-        DOM.init()
-        let project = Project()
-        let task = Task()
-        
-        project.say()
-        task.say()
+    const _init = () => {
+        _setAppData()
     };
 
-    const run = (marker,index) => {
-        init()
+    const _setAppData = () => {
+        if (0) {
+            //if local storage exists, load the data
+            //load()
+        }
+        else {
+            appData = _makeDefault()
+            
+        }
     };
 
+    const _makeDefault = () => {
+        let projects = ProjectList()
+        let project = Project({name: 'Get Life Back Together'})
+        projects.add(project)
+        project = Project({name: 'Accept and Enjoy Life as it Arrives'})
+        projects.add(project)
+        projects.show()
+        alert('Completed')
+    }
+
+
+
+    const run = () => {
+        _init()
+    };
     
     return {
       run

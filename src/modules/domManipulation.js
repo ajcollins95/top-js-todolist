@@ -5,6 +5,10 @@ const DOM = ((doc) => {
     const init = (marker,index) => {
         alert('DOM')
     };
+
+    const dispTask = (task) => {
+        console.log('task')
+    }
     
     return {
       init
