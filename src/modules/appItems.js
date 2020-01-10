@@ -1,6 +1,5 @@
 import { TaskList } from './lists';
 
-
 //Contains Tasks, Projects, and their parent, AppItem
 
 //AppItem Factory function
@@ -30,10 +29,17 @@ const AppItem = () => {
     const setName = (newName) => {
         _data.name = newName
     }
+    
+    const getName = () => {
+        return _data.name 
+    }
 
     const setList = (list) => {
         _data['list'] = list
-        _data.list.say()
+    }
+
+    const getList = (list) => {
+        return _data.list
     }
 
     //log display data
@@ -46,26 +52,39 @@ const AppItem = () => {
         setName(args['name'])
     }
 
+    const addTask = (task) => {
+        //adds a task to the Project List of this Item
+        if (_data.list) {
+            _data.list.add(task)
+        }
+        else {
+            throw 'This Project has no list property'
+        }
+        
+    }
+
     return {
         setType,
         getType,
+        getName,
         setName,
         setList,
-        show,
-        _init
+        getList,
+        _init,
+        addTask
     }
 }
 
 
 //Task Factory function
 //Task is a 'class'
-const Task = (args) => {
+const Task = (arg) => {
     //inheritance
     const {
         setType,
         getType,
+        getName,
         setName,
-        show,
         _init
     } = AppItem()
 
@@ -75,13 +94,17 @@ const Task = (args) => {
     const initTask = (args) => {
         setType('Task')
         _init(args)
+        
+    }
+    const showItem = (args) => {
+        console.log(`Task: ${getName()}`)
     }
 
-    initTask()
+    initTask(arg)
 
     return {
-        show,
-        getType
+        getType,
+        showItem
     }
 }
 
@@ -94,9 +117,10 @@ const Project = (arg) => {
         setType,
         getType,
         setName,
-        
+        getName,
+        addTask,
         setList,
-        show,
+        getList,
         _init
     } = AppItem()
 
@@ -109,11 +133,20 @@ const Project = (arg) => {
         setList(TaskList())
     }
 
+    const showItem = (args) => {
+        //displays a project to console
+        console.log(`Project: ${getName()}`)
+        getList().showList()
+    }
+       
+
+
     initProject(arg)
 
     return {
-        show,
-        getType
+        showItem,
+        getType,
+        addTask
     }
 }
 

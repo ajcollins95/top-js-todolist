@@ -18,13 +18,14 @@ const List = () => {
 
     const show = () => {
         for (let i = 0; i < len(); i++) {
-            _data[i].show()
+            _data[i].showItem()
         }
     }
 
     return {
         addToList,
         show,
+        len
 
     }
 }
@@ -32,16 +33,31 @@ const List = () => {
 //TaskList Factory function
 //TaskList is a 'class'
 const TaskList = () => {
+    //inheritance
     const {
-        msg,
+        addToList, 
+        show,
+        len
     } = List()
 
-    const say = () => {
-        alert('Hey I\'m a Tasklist!')
+    //class variables
+    const _type = 'Task'
+
+
+    //public methods
+    const add = (item) => {
+        addToList(item, _type)
     }
-    
+
+    const showList = () => {
+        //display task list in console
+        show()
+    }
+
     return {
-        say
+        add,
+        showList,
+        len
     }
 }
 
@@ -57,15 +73,19 @@ const ProjectList = () => {
     //class variables
     const _type = 'Project'
 
-
     //public methods
     const add = (item) => {
         addToList(item, _type)
     }
 
+    const showList = () => {
+        //displays a project list in the console
+        show()
+    }
+
     return {
         add,
-        show
+        showList
     }
 }
 

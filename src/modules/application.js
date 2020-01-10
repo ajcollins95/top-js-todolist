@@ -17,7 +17,6 @@ const application = (() => {
         }
         else {
             appData = _makeDefault()
-            
         }
     };
 
@@ -25,8 +24,10 @@ const application = (() => {
         //make the default data for an empty cache
         let projects = ProjectList()
         let project = Project({name: 'Accept/Enjoy Life as it Arrives'})
+        project.addTask(Task({ name: 'Drink water'}))
+        project.addTask(Task({ name: 'Meditate' }))
         projects.add(project)
-        projects.show()
+        projects.showList()
 
     }
 
