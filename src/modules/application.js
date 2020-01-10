@@ -22,13 +22,12 @@ const application = (() => {
     };
 
     const _makeDefault = () => {
+        //make the default data for an empty cache
         let projects = ProjectList()
-        let project = Project({name: 'Get Life Back Together'})
-        projects.add(project)
-        project = Project({name: 'Accept and Enjoy Life as it Arrives'})
+        let project = Project({name: 'Accept/Enjoy Life as it Arrives'})
         projects.add(project)
         projects.show()
-        alert('Completed')
+
     }
 
 

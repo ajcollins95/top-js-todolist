@@ -24,7 +24,7 @@ const List = () => {
 
     return {
         addToList,
-        show
+        show,
 
     }
 }
@@ -32,8 +32,14 @@ const List = () => {
 //TaskList Factory function
 //TaskList is a 'class'
 const TaskList = () => {
-    const {say, msg} = List()
-    msg = 'taskList'
+    const {
+        msg,
+    } = List()
+
+    const say = () => {
+        alert('Hey I\'m a Tasklist!')
+    }
+    
     return {
         say
     }

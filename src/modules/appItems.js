@@ -1,3 +1,6 @@
+import { TaskList } from './lists';
+
+
 //Contains Tasks, Projects, and their parent, AppItem
 
 //AppItem Factory function
@@ -17,8 +20,7 @@ const AppItem = () => {
         }
         else {
             throws `${newType} is invalid type`
-        }
-        
+        } 
     }
 
     const getType = () => {
@@ -29,15 +31,28 @@ const AppItem = () => {
         _data.name = newName
     }
 
+    const setList = (list) => {
+        _data['list'] = list
+        _data.list.say()
+    }
+
+    //log display data
     const show = () => {
         console.log(_data)
     }
     
+    //duck initialization function
+    const _init = (args) => {
+        setName(args['name'])
+    }
+
     return {
         setType,
         getType,
         setName,
-        show
+        setList,
+        show,
+        _init
     }
 }
 
@@ -45,38 +60,56 @@ const AppItem = () => {
 //Task Factory function
 //Task is a 'class'
 const Task = (args) => {
- 
-    const say = () => {
-        alert('Task')
+    //inheritance
+    const {
+        setType,
+        getType,
+        setName,
+        show,
+        _init
+    } = AppItem()
+
+    //class variables
+
+
+    const initTask = (args) => {
+        setType('Task')
+        _init(args)
     }
-    
+
+    initTask()
+
     return {
-        say
+        show,
+        getType
     }
 }
 
 
 //Project Factory function
 //Project is a 'class'
-const Project = (args) => {
+const Project = (arg) => {
     //inheritance
     const {
         setType,
         getType,
         setName,
-        show
+        
+        setList,
+        show,
+        _init
     } = AppItem()
 
     //class variables
 
-    
 
-    const init = () => {
+    const initProject = (args) => {
         setType('Project')
-        setName(args['name'])
+        _init(args)
+        setList(TaskList())
     }
 
-    init()
+    initProject(arg)
 
     return {
         show,
