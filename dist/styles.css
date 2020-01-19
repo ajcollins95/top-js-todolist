@@ -1,0 +1,69 @@
+:root {
+    
+
+    --lava: #d61418;
+    --subblack: #1c1c1c;
+    --linen: #f7f3e3;
+
+    --x1: #1c0221;
+    --y1: #7b5e7b;
+    --z1: #938274;
+
+    --x2: #152614;
+    --y2: #1e441e;
+    --z2: #2a7221;
+ 
+    --x3: #0d1f22;
+    --y3: #264027;
+    --z3: #3c5233;
+
+}
+
+body {
+    background-color: black;
+    color: var(--linen);
+    font-family: "Gruppo", sans-serif;
+}
+
+header {
+    padding-top: 10px;
+    text-align: center;
+}
+
+#title {
+    color: var(--lava);
+    font-size: 2em;
+}
+
+#app-window {
+    margin: auto;
+    width: 750px;
+    display: flex;
+}
+
+.title {
+    padding: 5px;
+}
+
+#app-window > * {
+}
+
+#project-window > *, #task-window > * {
+    border: 1px solid var(--lava);
+    background-color: var(--subblack);
+    border-radius: 5px;
+    margin: 10px;
+    text-align: center;
+}
+
+#project-window {
+    flex-grow: 1;
+}
+
+#task-window {
+    flex-grow: 3;
+    
+}
+
+
+

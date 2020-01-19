@@ -60,7 +60,6 @@ const AppItem = () => {
         else {
             throw 'This Project has no list property'
         }
-        
     }
 
     return {
