@@ -30,7 +30,7 @@ const DOM = ((doc) => {
         let projectTitle = createElem({
             tag: 'div', 
             class: 'title',
-            text: 'projects'})
+            text: 'Projects'})
         let projects = createElem({
             tag: 'div', 
             id: 'project-list',
@@ -49,7 +49,7 @@ const DOM = ((doc) => {
       let taskTitle = createElem({
           tag: 'div', 
           class: 'title',
-          text: 'tasks'})
+          text: 'Tasks'})
       let tasks = createElem({
           tag: 'div', 
           id: 'task-list',
@@ -63,21 +63,29 @@ const DOM = ((doc) => {
 
 
     const createHeader = () => {
-        let titleText = 'to.Do'
-        let subtitleText = '"must do it"'
 
         let header = createElem({tag: 'header'})
-        let title = createElem({
+        /*let title = createElem({
             tag: 'p', 
             id: 'title',
             text: titleText})
         let subtitle = createElem({
             tag: 'p', 
             id: 'subtitle',
-            text: subtitleText})
+            text: subtitleText}) */
+        let to = createElem({
+            tag: 'span', 
+            text: 'to'})
+        let dot = createElem({
+            tag: 'span', 
+            text: '.'})
+        let doo = createElem({
+            tag: 'span', 
+            text: 'Do'})
 
-        header.appendChild(title)
-        //header.appendChild(subtitle)
+        header.appendChild(to)
+        header.appendChild(dot)
+        header.appendChild(doo)
         
         return header
     }
@@ -107,6 +115,7 @@ const DOM = ((doc) => {
 
     const init = () => {
         loadFrame()
+
   };
 
     init()

@@ -4,6 +4,13 @@
     --lava: #d61418;
     --subblack: #1c1c1c;
     --linen: #f7f3e3;
+    --bg: #000000;
+    --projbg: #1c1c1c;
+    --taskbg: #121212;
+    --hotlava: #e32807;
+
+    --skyblue: #86def0;
+    --paleyellow: #f5eb98;
 
     --x1: #1c0221;
     --y1: #7b5e7b;
@@ -20,49 +27,55 @@
 }
 
 body {
-    background-color: black;
+    background-color: var(--bg);
     color: var(--linen);
-    font-family: "Gruppo", sans-serif;
+    font-family: "Consolas", 'Courier New', monospace;
 }
 
 header {
-    padding-top: 10px;
+    padding: 10px 0px;
     text-align: center;
-}
-
-#title {
-    color: var(--lava);
     font-size: 2em;
 }
+
+header span:nth-child(1) {
+    color: var(--skyblue);
+}
+
+header span:nth-child(3) {
+    color: var(--paleyellow);
+}
+
 
 #app-window {
     margin: auto;
     width: 750px;
     display: flex;
+    
 }
 
 .title {
     padding: 5px;
+    font-size: 1.5em;
 }
 
 #app-window > * {
+    
+    text-align: center;
 }
 
 #project-window > *, #task-window > * {
-    border: 1px solid var(--lava);
-    background-color: var(--subblack);
-    border-radius: 5px;
-    margin: 10px;
-    text-align: center;
+    
 }
 
 #project-window {
     flex-grow: 1;
+    background-color: var(--projbg);
 }
 
 #task-window {
     flex-grow: 3;
-    
+    background-color: var(--taskbg);
 }
 
 

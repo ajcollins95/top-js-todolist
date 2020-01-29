@@ -27,6 +27,12 @@ const application = (() => {
         project.addTask(Task({ name: 'Drink water'}))
         project.addTask(Task({ name: 'Meditate' }))
         projects.add(project)
+        project = Project({name: 'Hokey Pokey'})
+        project.addTask(Task({ name: 'Insert Right Foot'}))
+        project.addTask(Task({ name: 'Remove Right Foot' }))
+        project.addTask(Task({ name: 'Replace Right Foot in Previous Position'}))
+        project.addTask(Task({ name: 'Shake Right Foot Vigorously' }))
+        projects.add(project)
         projects.showList()
 
     }
