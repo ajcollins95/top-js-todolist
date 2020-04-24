@@ -3,12 +3,12 @@ import Elem from './element';
 //DOM Manipulator module for HTML display
 //use "class" data to display objects
 const DOM = ((doc) => {
-    let page = doc.getElementById('content')
+    //let page = doc.getElementById('content')
 
     const createElem = (args) => {
         //creates element form an argument list
         let tag = args.tag || div
-        let elem = document.createElement(args.tag)
+        let elem = doc.createElement(args.tag)
 
         if (args.class) {
             elem.classList.add(args.class)
@@ -21,6 +21,21 @@ const DOM = ((doc) => {
       }
 
         return elem
+    }
+
+    const remove_children = (node) => {
+        while (node.children.length > 0) {
+            node.children[0].remove()
+        }
+    }
+
+    const clear = () => {
+        //clears all elements from task and project area
+        let project_list = doc.getElementById('project-list')
+        let task_list = doc.getElementById('task-list')
+
+        remove_children(project_list)
+        remove_children(task_list)
     }
 
     const createProjectWindow = () => {
@@ -42,86 +57,16 @@ const DOM = ((doc) => {
         return projectWindow
     }
 
-    const createTaskWindow = () => {
-      let taskWindow = createElem({
-          tag: 'div', 
-          id: 'task-window'})
-      let taskTitle = createElem({
-          tag: 'div', 
-          class: 'title',
-          text: 'Tasks'})
-      let tasks = createElem({
-          tag: 'div', 
-          id: 'task-list',
-          text: 'tasks here '})
-
-      taskWindow.appendChild(taskTitle)
-      taskWindow.appendChild(tasks)
-      
-      return taskWindow
-  }
-
-
-    const createHeader = () => {
-
-        let header = createElem({tag: 'header'})
-        /*let title = createElem({
-            tag: 'p', 
-            id: 'title',
-            text: titleText})
-        let subtitle = createElem({
-            tag: 'p', 
-            id: 'subtitle',
-            text: subtitleText}) */
-        let to = createElem({
-            tag: 'span', 
-            text: 'to'})
-        let dot = createElem({
-            tag: 'span', 
-            text: '.'})
-        let doo = createElem({
-            tag: 'span', 
-            text: 'Do'})
-
-        header.appendChild(to)
-        header.appendChild(dot)
-        header.appendChild(doo)
-        
-        return header
-    }
-
-    const createAppWindow = () => {
-      let appWindow = createElem({
-          tag: 'div', 
-          id: 'app-window'})
-
-      let taskWindow = createTaskWindow()  
-      let projectWindow = createProjectWindow()
-      
-      appWindow.appendChild(projectWindow)
-      appWindow.appendChild(taskWindow)
-      
-                                                                                          
-      return appWindow
-  }
-
-    const loadFrame = () => {
-        let header = createHeader()
-        let appWindow = createAppWindow()
-
-        page.appendChild(header)
-        page.appendChild(appWindow)
-    };
 
     const init = () => {
-        loadFrame()
 
   };
 
     init()
     
     return {
-        init
+        init,
+        clear
     };
 })(document);
 

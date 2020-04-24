@@ -1,5 +1,8 @@
+import DOM from './domManipulation';
+
 //List Factory function
 //List is a 'parent class' to tasklist and projectlist
+
 const List = () => {
     let _data = []
 
@@ -22,10 +25,17 @@ const List = () => {
         }
     }
 
+    const renderItems = () => {
+        for (let i = 0; i < len(); i++) {
+            _data[i].showItem()
+        }
+    }
+
     return {
         addToList,
         show,
-        len
+        len, 
+        renderItems
 
     }
 }
@@ -67,7 +77,8 @@ const ProjectList = () => {
     //inheritance
     const {
         addToList, 
-        show 
+        show,
+        renderItems
     } = List()
 
     //class variables
@@ -83,9 +94,20 @@ const ProjectList = () => {
         show()
     }
 
+    const renderProject = () => {
+        //renders all project data to the DOM
+
+        //clears all current proj/task data
+        DOM.clear()
+        //render each project
+
+
+    }
+
     return {
         add,
-        showList
+        showList,
+        renderProject
     }
 }
 

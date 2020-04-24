@@ -8,6 +8,7 @@
     --projbg: #1c1c1c;
     --taskbg: #121212;
     --hotlava: #e32807;
+    --cinnabar: #d9714c;
 
     --skyblue: #86def0;
     --paleyellow: #f5eb98;
@@ -35,6 +36,11 @@ body {
     align-items: stretch;
     padding: 0;
     margin: 0;
+    font-size: 1em;
+}
+
+input {
+    border: none;
 }
 
 header {
@@ -63,24 +69,77 @@ header {
     margin: 0;
     padding:0;
     width: 100%;
-    height: 850px;
+    
     display: flex;
     
 }
+
+/*project selectors*/
 
 .project-window {
     flex-grow: 1;
     background-color: var(--projbg);
 }
 
+.project-content {
+    font-size: 1.5em;
+}
+
+
+.project-form-wrapper {
+    margin: 20px 0;
+    padding: 0;
+}
+
+.project-form > input {
+    /*affects input form*/
+    font-size: 1em;
+    font-family: "Consolas", 'Courier New', monospace;
+    caret-color: var(--cinnabar);
+    color: var(--cinnabar);
+    background-color: var(--projbg);
+    /*border: solid orange;*/
+    margin-left: 80px
+}
+
+.project {
+    margin: 20px 80px;
+}
+
+/* task selectors */
+
 .task-window {
     flex-grow: 3;
     background-color: var(--taskbg);
 }
 
+.task-content {
+    font-size: 1.5em;
+}
+
+
+.task-form-wrapper {
+    margin: 20px 0;
+    padding: 0;
+}
+
+.task-form > input {
+    /*affects input form*/
+    font-size: 1em;
+    font-family: "Consolas", 'Courier New', monospace;
+    caret-color: var(--cinnabar);
+    color: var(--cinnabar);
+    background-color: var(--taskbg);
+    margin-left: 80px
+}
+
+.task {
+    margin: 20px 80px;
+    height:
+}
+
 .subtitle {
-    padding: 15px;
+    padding: 15px 40px;
     font-size: 2em;
     box-shadow: 2px 5px 3px black;
 }
-
