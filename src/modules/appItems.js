@@ -99,11 +99,16 @@ const Task = (arg) => {
         console.log(`Task: ${getName()}`)
     }
 
+    const render = () => {
+        console.log(getName())
+    }
+
     initTask(arg)
 
     return {
         getType,
-        showItem
+        showItem,
+        render
     }
 }
 
@@ -137,6 +142,11 @@ const Project = (arg) => {
         console.log(`Project: ${getName()}`)
         getList().showList()
     }
+
+    const render = () => {
+        console.log(getName())
+        getList().renderItems()
+    }
        
 
 
@@ -145,7 +155,8 @@ const Project = (arg) => {
     return {
         showItem,
         getType,
-        addTask
+        addTask,
+        render
     }
 }
 

@@ -27,7 +27,13 @@ const List = () => {
 
     const renderItems = () => {
         for (let i = 0; i < len(); i++) {
-            _data[i].showItem()
+            _data[i].render()
+        }
+    }
+
+    const getIndexOf = (prop, val, start = 0) => {
+        for (let i = start; i < len(); i++) {
+            
         }
     }
 
@@ -47,7 +53,8 @@ const TaskList = () => {
     const {
         addToList, 
         show,
-        len
+        len,
+        renderItems
     } = List()
 
     //class variables
@@ -67,7 +74,8 @@ const TaskList = () => {
     return {
         add,
         showList,
-        len
+        len,
+        renderItems
     }
 }
 
@@ -94,12 +102,12 @@ const ProjectList = () => {
         show()
     }
 
-    const renderProject = () => {
+    const renderProjectList = () => {
         //renders all project data to the DOM
 
         //clears all current proj/task data
         DOM.clear()
-        //render each project
+        renderItems()
 
 
     }
@@ -107,7 +115,7 @@ const ProjectList = () => {
     return {
         add,
         showList,
-        renderProject
+        renderProjectList
     }
 }
 

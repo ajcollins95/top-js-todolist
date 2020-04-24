@@ -37,8 +37,8 @@ const application = (() => {
         project.addTask(Task({ name: 'Replace Right Foot in Previous Position'}))
         project.addTask(Task({ name: 'Shake Right Foot Vigorously' }))
         projects.add(project)
-        projects.showList()
-        projects.renderProject()
+        //projects.showList()
+        projects.renderProjectList()
 
     }
 
