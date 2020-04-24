@@ -11,7 +11,7 @@ const List = () => {
     }
 
     const addToList = (item, type) => {
-        if (item.getType() == type) {
+        if (item.getProps().type == type) {
             _data.push(item)
         }
         else {
@@ -20,21 +20,27 @@ const List = () => {
     }
 
     const show = () => {
+        //console logs 
         for (let i = 0; i < len(); i++) {
             _data[i].showItem()
         }
     }
 
     const renderItems = () => {
+        //DOM render
         for (let i = 0; i < len(); i++) {
             _data[i].render()
         }
     }
 
     const getIndexOf = (prop, val, start = 0) => {
+        //finds index of first occurence where value is found for prop
         for (let i = start; i < len(); i++) {
-            
+            if (_data[i].getProps[prop] == val) {
+                return i
+            }
         }
+        return -1
     }
 
     return {

@@ -22,24 +22,16 @@ const AppItem = () => {
         } 
     }
 
-    const getType = () => {
-        return _data.type
+    const getProps = () => {
+        return _data
     }
 
     const setName = (newName) => {
         _data.name = newName
     }
-    
-    const getName = () => {
-        return _data.name 
-    }
 
     const setList = (list) => {
         _data['list'] = list
-    }
-
-    const getList = (list) => {
-        return _data.list
     }
 
     //log display data
@@ -64,11 +56,9 @@ const AppItem = () => {
 
     return {
         setType,
-        getType,
-        getName,
         setName,
         setList,
-        getList,
+        getProps,
         _init,
         addTask
     }
@@ -81,8 +71,7 @@ const Task = (arg) => {
     //inheritance
     const {
         setType,
-        getType,
-        getName,
+        getProps,
         setName,
         _init
     } = AppItem()
@@ -96,17 +85,17 @@ const Task = (arg) => {
         
     }
     const showItem = (args) => {
-        console.log(`Task: ${getName()}`)
+        console.log(`Task: ${getProps().name}`)
     }
 
     const render = () => {
-        console.log(getName())
+        console.log(getProps().name)
     }
 
     initTask(arg)
 
     return {
-        getType,
+        getProps,
         showItem,
         render
     }
@@ -119,12 +108,10 @@ const Project = (arg) => {
     //inheritance
     const {
         setType,
-        getType,
         setName,
-        getName,
         addTask,
         setList,
-        getList,
+        getProps,
         _init
     } = AppItem()
 
@@ -139,13 +126,13 @@ const Project = (arg) => {
 
     const showItem = (args) => {
         //displays a project to console
-        console.log(`Project: ${getName()}`)
-        getList().showList()
+        console.log(`Project: ${getProps().name}`)
+        getProps().list.showList()
     }
 
     const render = () => {
-        console.log(getName())
-        getList().renderItems()
+        console.log(getProps().name)
+        getProps().list.renderItems()
     }
        
 
@@ -154,7 +141,7 @@ const Project = (arg) => {
 
     return {
         showItem,
-        getType,
+        getProps,
         addTask,
         render
     }
