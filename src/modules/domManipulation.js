@@ -4,6 +4,18 @@ import Elem from './element';
 //use "class" data to display objects
 const DOM = ((doc) => {
     //let page = doc.getElementById('content')
+    
+    const activeProjectListener = (projList, project) => {
+        //switches active project
+        let clicked = project
+        let activeIndex = projList.getIndexOf('active', 1)
+        //console.log(activeIndex)
+        let active = projList.getItem('Project', activeIndex)
+        clicked.setActive(1)
+        active.setActive(0)
+        //console.log('i get here')
+        render(projList)
+    }
 
     const createElem = (args) => {
         //creates element form an argument list
@@ -39,30 +51,64 @@ const DOM = ((doc) => {
     }
 
 
-    const renderProject = (props) => {
+
+    const renderProject = (projList, project) => {
+        //makes project node
+        let props = project.getProps()
         let project_list = doc.getElementById('project-list')
-        let project = createElem({
+        let project_node = createElem({
             tag: 'div',
             class: 'project', 
             text: props.name
         })
+        //selects active project
         if (props.active) {
-            project.classList.add("active");
+            project_node.classList.add("active");
         }
+        //attach listeners
+        project_node.addEventListener('click', function() {
+            activeProjectListener(projList,project)
+        } )
+        
+        
 
-        project_list.appendChild(project)
+
+        project_list.appendChild(project_node)
     }
 
-    const renderTask = (props) => {
+    const renderTask = (task) => {
+        let props = task.getProps()
         let task_list = doc.getElementById('task-list')
-        let task = createElem({
+        let task_node = createElem({
             tag: 'div',
             class: 'task', 
             text: props.name
         })
 
-        task_list.appendChild(task)
+        task_list.appendChild(task_node)
     }
+
+    const render = (projList) => {
+        //clear areas where data gets added
+        clear()
+        //loop through projects, draw tasks for active project
+        for (let i = 0; i < projList.len(); i++) {
+            let project = projList.getItem('Project', i)
+            //console.log(project.getProps().name)
+            renderProject(projList, project)
+            //when project active, draw its tasks
+            if (project.getProps().active) {
+                for (let i = 0; i < project.getProps().list.len(); i++) {
+                    let task = project.getProps().list.getItem('Task',i)
+                    renderTask(task)
+                }
+            }
+        }
+
+        //projList.renderItems()
+    }
+
+
 
 
 
@@ -90,7 +136,8 @@ const DOM = ((doc) => {
     return {
         clear,
         renderProject,
-        renderTask
+        renderTask,
+        render
     };
 })(document);
 

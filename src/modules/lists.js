@@ -26,15 +26,12 @@ const List = () => {
         }
     }
 
-    const renderItems = () => {
-        //DOM render
-        for (let i = 0; i < len(); i++) {
-            _data[i].render()
-        }
-    }
-
-    const getItems = (type, i) => {
+    const getItem = (type, i) => {
         let item = _data[i]
+        /*
+        console.log(`given type ${type}`)
+        console.log(`found type ${item.getProps().type}`)*/
+
         if (item.getProps().type == type) {
             return item
         }
@@ -47,7 +44,8 @@ const List = () => {
     const getIndexOf = (prop, val, start = 0) => {
         //finds index of first occurence where value is found for prop
         for (let i = start; i < len(); i++) {
-            if (_data[i].getProps[prop] == val) {
+            //console.log(`active = ${_data[i].getProps()[prop]}`)
+            if (_data[i].getProps()[prop] == val) {
                 return i
             }
         }
@@ -58,8 +56,7 @@ const List = () => {
         addToList,
         show,
         len, 
-        renderItems,
-        getItems,
+        getItem,
         getIndexOf
 
     }
@@ -73,7 +70,7 @@ const TaskList = () => {
         addToList, 
         show,
         len,
-        renderItems
+        getItem
     } = List()
 
     //class variables
@@ -94,7 +91,7 @@ const TaskList = () => {
         add,
         showList,
         len,
-        renderItems
+        getItem
     }
 }
 
@@ -106,7 +103,9 @@ const ProjectList = () => {
         addToList, 
         show,
         renderItems,
-        getIndexOf
+        getIndexOf,
+        len,
+        getItem
     } = List()
 
     //class variables
@@ -122,21 +121,13 @@ const ProjectList = () => {
         show()
     }
 
-    const renderProjectList = () => {
-        //renders all project data to the DOM
-
-        //clears all current proj/task data on DOM
-        DOM.clear()
-
-        renderItems()
-
-
-    }
-
     return {
         add,
         showList,
-        renderProjectList
+        renderItems,
+        len,
+        getItem,
+        getIndexOf
     }
 }
 

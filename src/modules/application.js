@@ -42,7 +42,7 @@ const application = (() => {
         projects.add(project)
         
         //projects.showList()
-        projects.renderProjectList()
+        DOM.render(projects)
 
     }
 
