@@ -1,4 +1,5 @@
 import { TaskList } from './lists';
+import DOM from './domManipulation';
 
 //Contains Tasks, Projects, and their parent, AppItem
 
@@ -34,6 +35,15 @@ const AppItem = () => {
         _data['list'] = list
     }
 
+    const setActive = (val) => {
+        //should be 0 or 1
+        if (1 >= val && val >= 0) {
+            _data['active'] = val
+        }
+    }
+
+    
+
     //log display data
     const show = () => {
         console.log(_data)
@@ -58,6 +68,7 @@ const AppItem = () => {
         setType,
         setName,
         setList,
+        setActive,
         getProps,
         _init,
         addTask
@@ -90,6 +101,7 @@ const Task = (arg) => {
 
     const render = () => {
         console.log(getProps().name)
+        DOM.renderTask(getProps())
     }
 
     initTask(arg)
@@ -111,6 +123,7 @@ const Project = (arg) => {
         setName,
         addTask,
         setList,
+        setActive,
         getProps,
         _init
     } = AppItem()
@@ -122,6 +135,7 @@ const Project = (arg) => {
         setType('Project')
         _init(args)
         setList(TaskList())
+        setActive(0)
     }
 
     const showItem = (args) => {
@@ -132,7 +146,11 @@ const Project = (arg) => {
 
     const render = () => {
         console.log(getProps().name)
-        getProps().list.renderItems()
+        DOM.renderProject(getProps())
+        if (getProps().active) {
+           getProps().list.renderItems() 
+        }
+        
     }
        
 
@@ -143,7 +161,8 @@ const Project = (arg) => {
         showItem,
         getProps,
         addTask,
-        render
+        render,
+        setActive
     }
 }
 

@@ -12,6 +12,7 @@
 
     --skyblue: #86def0;
     --paleyellow: #f5eb98;
+    --fullblue: #3885d1;
 
     --x1: #1c0221;
     --y1: #7b5e7b;
@@ -103,7 +104,17 @@ header {
 }
 
 .project {
-    margin: 20px 80px;
+    padding: 20px 0;
+    margin-left: 80px;
+    color: var(--skyblue);
+}
+
+.project:hover {
+    background-color: rgb(53, 53, 53);
+}
+
+.project.active {
+    color: var(--fullblue);
 }
 
 /* task selectors */
@@ -139,6 +150,7 @@ header {
 
 .subtitle {
     padding: 15px 40px;
+    margin-bottom: 10px;
     font-size: 2em;
     box-shadow: 2px 5px 3px black;
 }

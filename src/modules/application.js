@@ -27,16 +27,20 @@ const application = (() => {
     const _makeDefault = () => {
         //make the default data for an empty cache
         let projects = ProjectList()
-        let project = Project({name: 'Accept/Enjoy Life as it Arrives'})
+        let project = Project({name: 'Enjoy'})
         project.addTask(Task({ name: 'Drink water'}))
         project.addTask(Task({ name: 'Meditate' }))
         projects.add(project)
+        project.setActive(1)
         project = Project({name: 'Hokey Pokey'})
         project.addTask(Task({ name: 'Insert Right Foot'}))
         project.addTask(Task({ name: 'Remove Right Foot' }))
         project.addTask(Task({ name: 'Replace Right Foot in Previous Position'}))
         project.addTask(Task({ name: 'Shake Right Foot Vigorously' }))
+        
+        
         projects.add(project)
+        
         //projects.showList()
         projects.renderProjectList()
 

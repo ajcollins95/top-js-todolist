@@ -18,7 +18,7 @@ const DOM = ((doc) => {
         }
         if (args.id) {
           elem.id = args.id
-      }
+        }
 
         return elem
     }
@@ -37,6 +37,34 @@ const DOM = ((doc) => {
         remove_children(project_list)
         remove_children(task_list)
     }
+
+
+    const renderProject = (props) => {
+        let project_list = doc.getElementById('project-list')
+        let project = createElem({
+            tag: 'div',
+            class: 'project', 
+            text: props.name
+        })
+        if (props.active) {
+            project.classList.add("active");
+        }
+
+        project_list.appendChild(project)
+    }
+
+    const renderTask = (props) => {
+        let task_list = doc.getElementById('task-list')
+        let task = createElem({
+            tag: 'div',
+            class: 'task', 
+            text: props.name
+        })
+
+        task_list.appendChild(task)
+    }
+
+
 
     const createProjectWindow = () => {
         let projectWindow = createElem({
@@ -58,15 +86,11 @@ const DOM = ((doc) => {
     }
 
 
-    const init = () => {
-
-  };
-
-    init()
     
     return {
-        init,
-        clear
+        clear,
+        renderProject,
+        renderTask
     };
 })(document);
 

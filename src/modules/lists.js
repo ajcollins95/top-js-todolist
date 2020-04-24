@@ -33,6 +33,17 @@ const List = () => {
         }
     }
 
+    const getItems = (type, i) => {
+        let item = _data[i]
+        if (item.getProps().type == type) {
+            return item
+        }
+        else {
+            alert('ITEM FOUNDW ITH WRONF TYPE')
+        }
+    }
+    
+
     const getIndexOf = (prop, val, start = 0) => {
         //finds index of first occurence where value is found for prop
         for (let i = start; i < len(); i++) {
@@ -47,7 +58,9 @@ const List = () => {
         addToList,
         show,
         len, 
-        renderItems
+        renderItems,
+        getItems,
+        getIndexOf
 
     }
 }
@@ -92,7 +105,8 @@ const ProjectList = () => {
     const {
         addToList, 
         show,
-        renderItems
+        renderItems,
+        getIndexOf
     } = List()
 
     //class variables
@@ -111,8 +125,9 @@ const ProjectList = () => {
     const renderProjectList = () => {
         //renders all project data to the DOM
 
-        //clears all current proj/task data
+        //clears all current proj/task data on DOM
         DOM.clear()
+
         renderItems()
 
 
