@@ -4,7 +4,7 @@
     --lava: #d61418;
     --subblack: #1c1c1c;
     --linen: #f7f3e3;
-    --bg: #000000;
+    --bg: #030303;
     --projbg: #1c1c1c;
     --taskbg: #121212;
     --hotlava: #e32807;
@@ -30,53 +30,57 @@ body {
     background-color: var(--bg);
     color: var(--linen);
     font-family: "Consolas", 'Courier New', monospace;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
 }
 
 header {
-    padding: 10px 0px;
+    padding: 10px;
     text-align: center;
-    font-size: 2em;
+    font-size: 4em;
 }
 
-header span:nth-child(1) {
+.title div {
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+}
+
+.title > div:nth-child(1) {
     color: var(--skyblue);
+
 }
 
-header span:nth-child(3) {
+.title > div:nth-child(3) {
     color: var(--paleyellow);
+
 }
 
-
-#app-window {
-    margin: auto;
-    width: 750px;
+.app{
+    margin: 0;
+    padding:0;
+    width: 100%;
+    height: 850px;
     display: flex;
     
 }
 
-.title {
-    padding: 5px;
-    font-size: 1.5em;
-}
-
-#app-window > * {
-    
-    text-align: center;
-}
-
-#project-window > *, #task-window > * {
-    
-}
-
-#project-window {
+.project-window {
     flex-grow: 1;
     background-color: var(--projbg);
 }
 
-#task-window {
+.task-window {
     flex-grow: 3;
     background-color: var(--taskbg);
 }
 
-
+.subtitle {
+    padding: 15px;
+    font-size: 2em;
+    box-shadow: 2px 5px 3px black;
+}
 
