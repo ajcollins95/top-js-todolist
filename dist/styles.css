@@ -94,6 +94,11 @@ header {
     justify-content: space-between;
 }
 
+#project-list {
+    display: flex;
+    flex-direction: column;
+}
+
 #add-project {
     font-size: 1.5em;
     margin: 0 20px;
@@ -120,17 +125,34 @@ header {
 
 
 .project {
-    padding: 20px 0;
     margin-left: 80px;
-    color: var(--skyblue);
+    display: flex;
     cursor: default;
+    justify-content: space-between;
 }
 
-.project:hover {
+.project-name {
+    padding: 20px 0;
+    color: var(--skyblue);
+    width: 100%;
+
+}
+
+.del-button {
+    padding:10px 20px;
+    cursor: default;
+    font-size: 1.5em;
+}
+
+.del-button:hover {
+    color: var(--lava)
+}
+
+.project-name:hover {
     background-color: rgb(53, 53, 53);
 }
 
-.project.active {
+.project-name.active {
     color: var(--fullblue);
 }
 

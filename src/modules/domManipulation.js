@@ -8,9 +8,38 @@ const DOM = ((doc) => {
     /*
     LISTENERS
     */
+
+    const attachProjectListeners = (data) => {
+        data.project_name.addEventListener('click', function() {
+            switchProject(data)
+        } )
+        data.del_button.addEventListener('click', function() {
+            delProject(data)
+        } )
+    }
     
-    const activeProjectListener = (projList, project) => {
-        switchActive(projList, project)
+    const switchProject = (data) => {
+        switchActive(data.projList, data.project)
+    }
+
+    const delProject = (data) => {
+        let previous = data.project_node.previousElementSibling
+        //determine where next active will be
+        let active;
+        if (previous) {
+            active = previous 
+        } else {
+            active = data.project_node.nextElementSibling
+
+        }
+        //get next active proj
+        let i = data.projList.getIndexOf('name', active.firstChild.innerText)
+        let activeProject = data.projList.getItem('Project', i)
+
+        //do actual deletion
+        switchActive(data.projList, activeProject)
+        data.projList.del(data.project)
+        render(data.projList)
     }
 
     const addProjectListener = (projList) => {
@@ -92,20 +121,30 @@ const DOM = ((doc) => {
         let project_node = createElem({
             tag: 'div',
             class: 'project', 
+        })
+        let project_name = createElem({
+            tag: 'div',
+            class: 'project-name', 
             text: props.name
         })
-        //selects active project
-        if (props.active) {
-            project_node.classList.add("active");
+        let del_button = createElem({
+            tag: 'div',
+            class: 'del-button', 
+            text: '-'
+        })
+        let proj_data = {
+            projList,
+            project,
+            project_node,
+            project_name,
+            del_button
         }
-        //attach listeners
-        project_node.addEventListener('click', function() {
-            activeProjectListener(projList,project)
-        } )
-        
-        
-
-
+        if (props.active) {
+            project_name.classList.add("active");
+        }
+        attachProjectListeners(proj_data)
+        project_node.appendChild(project_name)
+        project_node.appendChild(del_button)
         project_list.appendChild(project_node)
     }
 

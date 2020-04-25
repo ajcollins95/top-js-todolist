@@ -20,10 +20,6 @@ const application = (() => {
         }
     };
 
-    const _renderData = () => {
-        
-    }
-
     const _makeDefault = () => {
         //make the default data for an empty cache
         let projects = ProjectList()

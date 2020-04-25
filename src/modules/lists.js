@@ -19,6 +19,10 @@ const List = () => {
         }
     }
 
+    const remove = (i) => {
+        _data.splice(i,1)
+    }
+
     const show = () => {
         //console logs 
         for (let i = 0; i < len(); i++) {
@@ -57,7 +61,8 @@ const List = () => {
         show,
         len, 
         getItem,
-        getIndexOf
+        getIndexOf,
+        remove
 
     }
 }
@@ -88,6 +93,8 @@ const TaskList = () => {
         show()
     }
 
+
+
     return {
         add,
         showList,
@@ -106,7 +113,8 @@ const ProjectList = () => {
         renderItems,
         getIndexOf,
         len,
-        getItem
+        getItem,
+        remove
     } = List()
 
     //class variables
@@ -127,14 +135,20 @@ const ProjectList = () => {
         show()
     }
 
+    const del = (project) => {
+        //displays a project list in the console
+        let i = getIndexOf('name',project.getProps().name)
+        remove(i)
+    }
+
     return {
         add,
         addProject,
         showList,
-        renderItems,
         len,
         getItem,
-        getIndexOf
+        getIndexOf,
+        del
     }
 }
 
