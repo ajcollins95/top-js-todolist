@@ -9,6 +9,7 @@
     --taskbg: #121212;
     --hotlava: #e32807;
     --cinnabar: #d9714c;
+    --proj-button: #0f0f0f;
 
     --skyblue: #86def0;
     --paleyellow: #f5eb98;
@@ -92,6 +93,7 @@ header {
 .project-form {
     display: flex;
     justify-content: space-between;
+    margin: 10px 0;
 }
 
 #project-list {
@@ -104,6 +106,7 @@ header {
     margin: 0 20px;
     border-radius: 25px;
     cursor: default;
+    color: var(--proj-button);
 }
 
 #add-project:hover {
@@ -119,7 +122,8 @@ header {
     color: var(--cinnabar);
     background-color: var(--projbg);
     /*border: solid orange;*/
-    margin-left: 80px
+    margin-left: 80px;
+    
 }
 
 
@@ -142,6 +146,8 @@ header {
     padding:10px 20px;
     cursor: default;
     font-size: 1.5em;
+    color: var(--proj-button);
+
 }
 
 .del-button:hover {

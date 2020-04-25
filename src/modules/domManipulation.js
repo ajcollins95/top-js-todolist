@@ -33,6 +33,7 @@ const DOM = ((doc) => {
 
         }
         //get next active proj
+        console.log(active)
         let i = data.projList.getIndexOf('name', active.firstChild.innerText)
         let activeProject = data.projList.getItem('Project', i)
 
@@ -91,6 +92,10 @@ const DOM = ((doc) => {
         }
 
         return elem
+    }
+
+    const createTaskElems = () => {
+        let l = 1;
     }
 
     const remove_children = (node) => {

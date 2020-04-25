@@ -34,9 +34,17 @@ const application = (() => {
         project.addTask(Task({ name: 'Remove Right Foot' }))
         project.addTask(Task({ name: 'Replace Right Foot in Previous Position'}))
         project.addTask(Task({ name: 'Shake Right Foot Vigorously' }))
-        
-        
         projects.add(project)
+
+        /*
+        select second n, try to delete, there's a bug
+        for(let i = 0; i < 3; i++) {
+            project = Project({name: 'n'})
+            projects.add(project)
+        }*/
+        
+        
+        
         
         //projects.showList()
         DOM.init(projects)
