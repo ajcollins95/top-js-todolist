@@ -72,14 +72,16 @@ header {
     width: 100%;
     
     display: flex;
+    align-items: flex-start;
     
 }
 
 /*project selectors*/
 
 .project-window {
-    flex-grow: 1;
+    flex: 1;
     background-color: var(--projbg);
+    
 }
 
 .project-content {
@@ -87,9 +89,21 @@ header {
 }
 
 
-.project-form-wrapper {
-    margin: 20px 0;
-    padding: 0;
+.project-form {
+    display: flex;
+    justify-content: space-between;
+}
+
+#add-project {
+    font-size: 1.5em;
+    margin: 0 20px;
+    border-radius: 25px;
+    cursor: default;
+}
+
+#add-project:hover {
+    /*background-color: rgb(53, 53, 53);*/
+    color: forestgreen;
 }
 
 .project-form > input {
@@ -103,10 +117,13 @@ header {
     margin-left: 80px
 }
 
+
+
 .project {
     padding: 20px 0;
     margin-left: 80px;
     color: var(--skyblue);
+    cursor: default;
 }
 
 .project:hover {
@@ -120,8 +137,12 @@ header {
 /* task selectors */
 
 .task-window {
-    flex-grow: 3;
+    flex: 3;
     background-color: var(--taskbg);
+}
+
+#task-list {
+   
 }
 
 .task-content {

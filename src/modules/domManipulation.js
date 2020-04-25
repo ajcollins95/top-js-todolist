@@ -4,15 +4,44 @@ import Elem from './element';
 //use "class" data to display objects
 const DOM = ((doc) => {
     //let page = doc.getElementById('content')
+
+    /*
+    LISTENERS
+    */
     
     const activeProjectListener = (projList, project) => {
+        switchActive(projList, project)
+    }
+
+    const addProjectListener = (projList) => {
+        let form = doc.getElementById('project-form')
+        let text = form.value
+        console.log(text)
+        if(text.length == 0) {
+            alert('not today, nigguh')
+        } else {
+            projList.addProject(text)
+            let i = projList.getIndexOf('name', text)
+            let newProj = projList.getItem('Project', i)
+            switchActive(projList, newProj)
+            form.value = ''
+            render(projList)
+        }
+    }
+
+    /*
+    DOM HELPER FUNCTIONS
+    */
+
+    const switchActive = (projList, project) => {
         //switches active project
         let clicked = project
         let activeIndex = projList.getIndexOf('active', 1)
         //console.log(activeIndex)
         let active = projList.getItem('Project', activeIndex)
-        clicked.setActive(1)
+        
         active.setActive(0)
+        clicked.setActive(1)
         //console.log('i get here')
         render(projList)
     }
@@ -49,6 +78,10 @@ const DOM = ((doc) => {
         remove_children(project_list)
         remove_children(task_list)
     }
+
+    /*
+    DOM RENDER FUNCTIONS
+    */
 
 
 
@@ -131,13 +164,22 @@ const DOM = ((doc) => {
         return projectWindow
     }
 
+    const init = (projList) => {
+        let add_project = doc.getElementById('add-project')
 
+        add_project.addEventListener('click', function() {
+            addProjectListener(projList)
+        })
+
+        render(projList)
+    }
     
     return {
         clear,
         renderProject,
         renderTask,
-        render
+        render,
+        init
     };
 })(document);
 

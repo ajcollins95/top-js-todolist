@@ -99,17 +99,11 @@ const Task = (arg) => {
         console.log(`Task: ${getProps().name}`)
     }
 
-    const render = () => {
-        console.log(getProps().name)
-        DOM.renderTask(getProps())
-    }
-
     initTask(arg)
 
     return {
         getProps,
         showItem,
-        render
     }
 }
 
@@ -144,14 +138,6 @@ const Project = (arg) => {
         getProps().list.showList()
     }
 
-    const render = () => {
-        console.log(getProps().name)
-        DOM.renderProject(getProps())
-        if (getProps().active) {
-           getProps().list.renderItems() 
-        }
-        
-    }
        
 
 
@@ -161,7 +147,6 @@ const Project = (arg) => {
         showItem,
         getProps,
         addTask,
-        render,
         setActive
     }
 }

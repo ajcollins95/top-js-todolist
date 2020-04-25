@@ -1,4 +1,4 @@
-import DOM from './domManipulation';
+import { Task, Project } from './appItems'
 
 //List Factory function
 //List is a 'parent class' to tasklist and projectlist
@@ -82,6 +82,7 @@ const TaskList = () => {
         addToList(item, _type)
     }
 
+
     const showList = () => {
         //display task list in console
         show()
@@ -116,6 +117,11 @@ const ProjectList = () => {
         addToList(item, _type)
     }
 
+    const addProject = (name) => {
+        let project = Project({name: name})
+        add(project)    
+    }
+
     const showList = () => {
         //displays a project list in the console
         show()
@@ -123,6 +129,7 @@ const ProjectList = () => {
 
     return {
         add,
+        addProject,
         showList,
         renderItems,
         len,

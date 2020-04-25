@@ -21,16 +21,17 @@ const application = (() => {
     };
 
     const _renderData = () => {
-
+        
     }
 
     const _makeDefault = () => {
         //make the default data for an empty cache
         let projects = ProjectList()
         let project = Project({name: 'Enjoy'})
+        projects.add(project)
         project.addTask(Task({ name: 'Drink water'}))
         project.addTask(Task({ name: 'Meditate' }))
-        projects.add(project)
+        
         project.setActive(1)
         project = Project({name: 'Hokey Pokey'})
         project.addTask(Task({ name: 'Insert Right Foot'}))
@@ -42,7 +43,7 @@ const application = (() => {
         projects.add(project)
         
         //projects.showList()
-        DOM.render(projects)
+        DOM.init(projects)
 
     }
 
