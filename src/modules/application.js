@@ -44,7 +44,7 @@ const application = (() => {
         project.addTask(Task({ name: 'Shake Right Foot Vigorously' }))
         projects.add(project)
 
-        console.log(format(new Date(2020, 3, 25), 'MM/dd/yyyy'))
+        console.log(format(new Date(2020, 3, 25), 'MMM. dd'))
 
         /*
         select second n, try to delete, there's a bug

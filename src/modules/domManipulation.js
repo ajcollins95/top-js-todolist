@@ -1,4 +1,6 @@
 import Elem from './element';
+import {format, compareAsc} from 'date-fns';
+
 
 //DOM Manipulator module for HTML display
 //use "class" data to display objects
@@ -90,6 +92,9 @@ const DOM = ((doc) => {
         if (args.id) {
           elem.id = args.id
         }
+        if (args.type) {
+            elem.type = args.type;
+        }
 
         return elem
     }
@@ -156,12 +161,47 @@ const DOM = ((doc) => {
     const renderTask = (task) => {
         let props = task.getProps()
         let task_list = doc.getElementById('task-list')
-        let task_node = createElem({
-            tag: 'div',
-            class: 'task', 
+
+        let checkbox = createElem({
+            tag: 'input',
+            class: 'checkbox', 
+            type: 'checkbox'
+        })
+        let name = createElem({
+            class: 'task-name', 
             text: props.name
         })
+        let date = createElem({
+            class: 'task-date', 
+            text: format(props.date, 'MMM. dd')
+        })
+        let menu = createElem({
+            class: 'task-menu', 
+            text: '...'
+        })
 
+        let task_left = createElem({
+            class: 'task-left', 
+        })
+
+        task_left.appendChild(checkbox)
+        task_left.appendChild(name)
+
+        let task_right = createElem({
+            class: 'task-right', 
+        })
+
+        task_right.appendChild(date)
+        task_right.appendChild(menu)
+
+        let task_node = createElem({
+            class: 'task', 
+        })
+
+        task_node.appendChild(task_left)
+        task_node.appendChild(task_right)
+
+        //ATTACH LISTENERS!
         task_list.appendChild(task_node)
     }
 
