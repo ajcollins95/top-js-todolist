@@ -1,6 +1,7 @@
 import DOM from './domManipulation';
 import { Task, Project } from './appItems'
 import { List, TaskList, ProjectList } from './lists';
+import {format, compareAsc} from 'date-fns';
 
 //TODO Application Module
 const application = (() => {
@@ -35,6 +36,8 @@ const application = (() => {
         project.addTask(Task({ name: 'Replace Right Foot in Previous Position'}))
         project.addTask(Task({ name: 'Shake Right Foot Vigorously' }))
         projects.add(project)
+
+        console.log(format(new Date(2020, 3, 25), 'MM/dd/yyyy'))
 
         /*
         select second n, try to delete, there's a bug
