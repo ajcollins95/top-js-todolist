@@ -195,6 +195,17 @@ header {
 
 .task {
     margin: 20px 80px;
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.task-right, .task-left {
+    display: flex;
+}
+
+.complete {
+    color: red;
 }
 
 .subtitle {

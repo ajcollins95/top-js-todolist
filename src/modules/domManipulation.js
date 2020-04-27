@@ -19,6 +19,21 @@ const DOM = ((doc) => {
             delProject(data)
         } )
     }
+
+    const toggleComplete = (data) => {
+        data.task_node.classList.toggle('complete')
+        render(data.projList)
+    }
+
+    const attachTaskListeners = (data) => {
+        const task_left = data.task_node.children[0]
+        const task_right = data.task_node.children[1]
+
+        task_left.children[0].addEventListener('click', function(){
+            toggleComplete(data)
+        })
+        //console.log(task_left)
+    }
     
     const switchProject = (data) => {
         switchActive(data.projList, data.project)
@@ -158,7 +173,7 @@ const DOM = ((doc) => {
         project_list.appendChild(project_node)
     }
 
-    const renderTask = (task) => {
+    const renderTask = (projList, task) => {
         let props = task.getProps()
         let task_list = doc.getElementById('task-list')
 
@@ -202,6 +217,14 @@ const DOM = ((doc) => {
         task_node.appendChild(task_right)
 
         //ATTACH LISTENERS!
+        let task_data = {
+            projList,
+            task,
+            task_node
+        }
+        attachTaskListeners(task_data)
+        console.log
+
         task_list.appendChild(task_node)
     }
 
@@ -217,7 +240,7 @@ const DOM = ((doc) => {
             if (project.getProps().active) {
                 for (let i = 0; i < project.getProps().list.len(); i++) {
                     let task = project.getProps().list.getItem('Task',i)
-                    renderTask(task)
+                    renderTask(projList, task)
                 }
             }
         }
