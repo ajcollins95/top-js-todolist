@@ -78,8 +78,8 @@ const DOM = ((doc) => {
 
     const createElem = (args) => {
         //creates element form an argument list
-        let tag = args.tag || div
-        let elem = doc.createElement(args.tag)
+        let tag = args.tag || 'div'
+        let elem = doc.createElement(tag)
 
         if (args.class) {
             elem.classList.add(args.class)
