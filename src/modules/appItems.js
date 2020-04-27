@@ -42,6 +42,10 @@ const AppItem = () => {
         }
     }
 
+    const set = (prop, val) => {
+        _data[prop] = val
+    }
+
     
 
     //log display data
@@ -64,6 +68,8 @@ const AppItem = () => {
         }
     }
 
+
+
     return {
         setType,
         setName,
@@ -71,7 +77,8 @@ const AppItem = () => {
         setActive,
         getProps,
         _init,
-        addTask
+        addTask,
+        set
     }
 }
 
@@ -84,7 +91,8 @@ const Task = (arg) => {
         setType,
         getProps,
         setName,
-        _init
+        _init,
+        set
     } = AppItem()
 
     //class variables
@@ -92,11 +100,26 @@ const Task = (arg) => {
 
     const initTask = (args) => {
         setType('Task')
-        _init(args)
+        setName(args.name)
+        let defaults = {
+            date: new Date(), //needs help from date fns
+            description: '',
+            isComplete: false,
+            isPriority: false,
+        }
+        for (const prop in defaults) {
+            const val = args[prop] || defaults[prop]
+            set(prop,val)
+          }
+        
         
     }
+
     const showItem = (args) => {
-        console.log(`Task: ${getProps().name}`)
+        const obj = getProps()
+        for (const prop in obj) {
+            console.log(`${obj.name}.${prop} = ${obj[prop]}`);
+          }
     }
 
     initTask(arg)

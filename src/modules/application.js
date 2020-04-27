@@ -28,6 +28,13 @@ const application = (() => {
         projects.add(project)
         project.addTask(Task({ name: 'Drink water'}))
         project.addTask(Task({ name: 'Meditate' }))
+        project.addTask(Task({ 
+            name: 'Follow the Anointed Yeshua',
+            date: new Date(2018, 11, 24, 10, 33, 30, 0),
+            description: 'Trust in dying to self',
+            isComplete: false,
+            isPriority: true
+        }))
         
         project.setActive(1)
         project = Project({name: 'Hokey Pokey'})
@@ -49,7 +56,7 @@ const application = (() => {
         
         
         
-        //projects.showList()
+        projects.showList()
         DOM.init(projects)
 
     }
