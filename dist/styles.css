@@ -1,7 +1,7 @@
 :root {
     
-
-    --lava: #d61418;
+/*3333333333333333333388888888888888888888888888833333333*/
+    --lava: #d61418; 
     --subblack: #1c1c1c;
     --linen: #f7f3e3;
     --bg: #030303;
@@ -11,7 +11,7 @@
     --cinnabar: #d9714c;
     --proj-button: #0f0f0f;
     --task-button: #090909;
-    --comment-green: #18a12b;
+    --comment-green: #266d1d;
     /*888888888888888888888888*/
 
     --skyblue: #86def0;
@@ -208,8 +208,8 @@ header {
 }
 
 .task.complete {
-    color: var(--projbg);
-    text-decoration: line-through;
+    color: var(--comment-green);
+    
     border-radius: 5px;
 }
 
@@ -221,19 +221,37 @@ header {
     
 }
 
+.checkbox:hover .fill {
+    
+    height: 100%;
+    width: 100%;
+    background-color: var(--projbg);
+    
+}
+
+span{
+    display: none;
+}
+
+.task.complete .task-name span {
+    display: inline;
+}
+
 .task-right, .task-left {
     display: flex;
 }
 
 .checkbox {
     background-color: var(--task-button);
-    width: 1em;
+    width: .75em;
     border-radius: 5px;
     border: solid 5px var(--task-button);
     margin-right: 1em;
     display: flex;
     justify-content: space-around;
 }
+
+
 
 .complete {
     color: red;

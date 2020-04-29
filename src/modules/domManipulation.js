@@ -93,6 +93,7 @@ const DOM = ((doc) => {
         //creates element form an argument list
         let tag = args.tag || 'div'
         let elem = doc.createElement(tag)
+        //i could refactor this to be less annoying...
 
         if (args.class) {
             elem.classList.add(args.class)
@@ -105,6 +106,9 @@ const DOM = ((doc) => {
         }
         if (args.type) {
             elem.type = args.type;
+        }
+        if (args.innerHTML) {
+            elem.innerHTML = args.innerHTML
         }
 
         return elem
@@ -124,6 +128,17 @@ const DOM = ((doc) => {
         checkbox.appendChild(fill)
 
         return checkbox
+    }
+
+    const createName = (task) => {
+        let taskname = task.getProps().name
+        let name = createElem(
+            {
+                class: 'task-name', 
+                innerHTML: '<span>//</span>' + taskname 
+            }
+        )
+        return name
     }
 
     const createTaskElems = () => {
@@ -190,10 +205,8 @@ const DOM = ((doc) => {
         let task_list = doc.getElementById('task-list')
 
         let checkbox = createCheckbox(task)
-        let name = createElem({
-            class: 'task-name', 
-            text: props.name
-        })
+        let name = createName(task)
+    
         let date = createElem({
             class: 'task-date', 
             text: format(props.date, 'MMM. dd')
