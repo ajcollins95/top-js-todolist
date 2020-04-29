@@ -26,7 +26,12 @@ const application = (() => {
         let projects = ProjectList()
         let project = Project({name: 'Enjoy'})
         projects.add(project)
-        project.addTask(Task({ name: 'Drink water'}))
+        project.addTask(Task(
+            { 
+                name: 'Drink water',
+                isComplete: true
+            }
+        ))
         project.addTask(Task({ name: 'Meditate' }))
         project.addTask(Task({ 
             name: 'Follow the Anointed Yeshua',
@@ -53,9 +58,7 @@ const application = (() => {
             projects.add(project)
         }*/
         
-        
-        
-        
+
         projects.showList()
         DOM.init(projects)
 

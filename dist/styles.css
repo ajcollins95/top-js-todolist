@@ -10,6 +10,9 @@
     --hotlava: #e32807;
     --cinnabar: #d9714c;
     --proj-button: #0f0f0f;
+    --task-button: #090909;
+    --comment-green: #18a12b;
+    /*888888888888888888888888*/
 
     --skyblue: #86def0;
     --paleyellow: #f5eb98;
@@ -200,8 +203,36 @@ header {
 
 }
 
+.fill {
+    display: block;
+}
+
+.task.complete {
+    color: var(--projbg);
+    text-decoration: line-through;
+    border-radius: 5px;
+}
+
+.task.complete .checkbox .fill {
+    
+    height: 100%;
+    width: 100%;
+    background-color: var(--comment-green);
+    
+}
+
 .task-right, .task-left {
     display: flex;
+}
+
+.checkbox {
+    background-color: var(--task-button);
+    width: 1em;
+    border-radius: 5px;
+    border: solid 5px var(--task-button);
+    margin-right: 1em;
+    display: flex;
+    justify-content: space-around;
 }
 
 .complete {

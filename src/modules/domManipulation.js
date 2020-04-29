@@ -20,17 +20,13 @@ const DOM = ((doc) => {
         } )
     }
 
-    const toggleComplete = (data) => {
-        data.task_node.classList.toggle('complete')
-        render(data.projList)
-    }
-
     const attachTaskListeners = (data) => {
         const task_left = data.task_node.children[0]
         const task_right = data.task_node.children[1]
 
         task_left.children[0].addEventListener('click', function(){
-            toggleComplete(data)
+            data.task.toggleComplete()
+            render(data.projList)
         })
         //console.log(task_left)
     }
@@ -114,6 +110,22 @@ const DOM = ((doc) => {
         return elem
     }
 
+    const createCheckbox = (task) => {
+        let checkbox = createElem(
+            {
+                class: 'checkbox'
+            }
+        )
+        let fill = createElem(
+            {
+                class: 'fill'
+            }
+        )        
+        checkbox.appendChild(fill)
+
+        return checkbox
+    }
+
     const createTaskElems = () => {
         let l = 1;
     }
@@ -177,11 +189,7 @@ const DOM = ((doc) => {
         let props = task.getProps()
         let task_list = doc.getElementById('task-list')
 
-        let checkbox = createElem({
-            tag: 'input',
-            class: 'checkbox', 
-            type: 'checkbox'
-        })
+        let checkbox = createCheckbox(task)
         let name = createElem({
             class: 'task-name', 
             text: props.name
@@ -192,7 +200,7 @@ const DOM = ((doc) => {
         })
         let menu = createElem({
             class: 'task-menu', 
-            text: '...'
+            text: '(edit)'
         })
 
         let task_left = createElem({
@@ -222,8 +230,12 @@ const DOM = ((doc) => {
             task,
             task_node
         }
+
+        if (task.getProps().isComplete) {
+            task_node.classList.add('complete')
+        }
         attachTaskListeners(task_data)
-        console.log
+        
 
         task_list.appendChild(task_node)
     }

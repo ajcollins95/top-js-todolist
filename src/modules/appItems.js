@@ -111,8 +111,11 @@ const Task = (arg) => {
             const val = args[prop] || defaults[prop]
             set(prop,val)
           }
-        
-        
+    }
+
+    const toggleComplete = () => {
+        let toggled = ! getProps().isComplete
+        set('isComplete', toggled)
     }
 
     const showItem = (args) => {
@@ -127,6 +130,7 @@ const Task = (arg) => {
     return {
         getProps,
         showItem,
+        toggleComplete
     }
 }
 
