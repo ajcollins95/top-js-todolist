@@ -72,7 +72,9 @@ const TaskList = () => {
         addToList, 
         show,
         len,
-        getItem
+        getItem,
+        getIndexOf,
+        remove
     } = List()
 
     //class variables
@@ -90,13 +92,20 @@ const TaskList = () => {
         show()
     }
 
+    const del = (task) => {
+        //could combine name and description search in the future
+        let i = getIndexOf('name',task.getProps().name)
+        remove(i)
+    }
+
 
 
     return {
         add,
         showList,
         len,
-        getItem
+        getItem,
+        del
     }
 }
 
@@ -132,7 +141,6 @@ const ProjectList = () => {
     }
 
     const del = (project) => {
-        //displays a project list in the console
         let i = getIndexOf('name',project.getProps().name)
         remove(i)
     }

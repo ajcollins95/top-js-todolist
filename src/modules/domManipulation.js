@@ -126,6 +126,7 @@ const DOM = ((doc) => {
     const handleEdit = (data) => {
         const form = doc.getElementById('popup-form')
         const exit = doc.getElementById('close-button')
+        const del = doc.getElementById('del-button')
         const save = doc.getElementById('save-button')
         form.setAttribute('style','display: flex;')
         populateForm(form,data)
@@ -134,9 +135,15 @@ const DOM = ((doc) => {
             closeEdit()
             render(data.projList)
         })
-        
         save.addEventListener('click', function(){
             handleSave(data)
+            render(data.projList)
+
+        })
+        del.addEventListener('click', function(){
+            data.project.getProps().list.del(data.task)
+            closeEdit()
+            render(data.projList)
         })
 
     }
@@ -259,12 +266,18 @@ const DOM = ((doc) => {
             id: 'save-button', 
             text: 'save'
         })
+        let del = createElem({
+            tag: 'button',
+            id: 'del-button', 
+            text: 'del'
+        })
         let exit = createElem({
             tag: 'button',
             id: 'close-button', 
             text: 'exit'
         })
         wrapper.appendChild(save)
+        wrapper.appendChild(del)
         wrapper.appendChild(exit)
         buttons.appendChild(wrapper)
         content.appendChild(buttons)
@@ -304,7 +317,7 @@ const DOM = ((doc) => {
         project_list.appendChild(project_node)
     }
 
-    const renderTask = (projList, task) => {
+    const renderTask = (projList, project, task) => {
         let props = task.getProps()
         let task_list = doc.getElementById('task-list')
 
@@ -345,6 +358,7 @@ const DOM = ((doc) => {
         //ATTACH LISTENERS!
         let task_data = {
             projList,
+            project,
             task,
             task_node
         }
@@ -372,7 +386,7 @@ const DOM = ((doc) => {
             if (project.getProps().active) {
                 for (let i = 0; i < project.getProps().list.len(); i++) {
                     let task = project.getProps().list.getItem('Task',i)
-                    renderTask(projList, task)
+                    renderTask(projList, project, task)
                 }
             }
         }
