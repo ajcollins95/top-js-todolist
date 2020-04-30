@@ -180,7 +180,11 @@ const ProjectList = () => {
 
     const save = () => {
         let projects = objectify()
-        console.log(projects)
+        localStorage.setItem('saveData', JSON.stringify(projects))
+    }
+
+    const clearSave = () => {
+        localStorage.clear()
     }
 
     return {

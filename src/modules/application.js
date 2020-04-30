@@ -12,14 +12,20 @@ const application = (() => {
     };
 
     const _setAppData = () => {
-        if (0) {
-            //if local storage exists, load the data
-            //load()
+        const save = localStorage.getItem('saveData')
+        if (save) {
+            appData = _load(save)
         }
         else {
             appData = _makeDefault()
         }
+        DOM.init(appData)
     };
+
+    const _load = (data) => {
+        let projects = ProjectList()
+        
+    }
 
     const _makeDefault = () => {
         //make the default data for an empty cache
@@ -49,18 +55,7 @@ const application = (() => {
         project.addTask(Task({ name: 'Shake Right Foot Vigorously' }))
         projects.add(project)
 
-        /*
-        select second n, try to delete, there's a bug
-        for(let i = 0; i < 3; i++) {
-            project = Project({name: 'n'})
-            projects.add(project)
-        }*/
-        
-        projects.save()
-
-        //projects.showList()
-        DOM.init(projects)
-
+        return projects
     }
 
 
