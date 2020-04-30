@@ -155,18 +155,33 @@ const Project = (arg) => {
         setList,
         setActive,
         getProps,
-        _init
+        _init,
+        set
     } = AppItem()
 
     //class variables
 
+    const initProject = (args) => {
+        setType('Project')
+        setName(args.name)
+        let defaults = {
+            active: 0,
+            list: TaskList()
+        }
+        for (const prop in defaults) {
+            const val = args[prop] || defaults[prop]
+            set(prop,val)
+          }
+    }
 
+    /*
     const initProject = (args) => {
         setType('Project')
         _init(args)
         setList(TaskList())
         setActive(0)
     }
+    */
 
     const showItem = (args) => {
         //displays a project to console
