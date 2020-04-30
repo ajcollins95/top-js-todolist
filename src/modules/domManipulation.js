@@ -1,4 +1,4 @@
-import Elem from './element';
+import { Task, Project } from './appItems'
 import {format, compareAsc} from 'date-fns';
 import Edit from '../edit.svg'
 
@@ -62,7 +62,7 @@ const DOM = ((doc) => {
         let text = form.value
         console.log(text)
         if(text.length == 0) {
-            alert('not today, nigguh')
+            alert('Project needs a name')
         } else {
             projList.addProject(text)
             let i = projList.getIndexOf('name', text)
@@ -71,6 +71,31 @@ const DOM = ((doc) => {
             form.value = ''
             render(projList)
         }
+    }
+
+    const addTaskListener = (projList) => {
+        const form = doc.getElementsByClassName('task-form')[0]
+        const name = form.children[0].children[0]
+        const givenDate = form.children[1].children[0]
+        const activeProject = projList.getActive()
+
+        if (name.value) {
+            if (givenDate.value) {
+                activeProject.addTask(Task(
+                    {
+                        name: name.value,
+                        date: new Date(givenDate.value)
+                    }
+                ))
+            } else {
+                activeProject.addTask(Task({name: name.value}))
+            }
+            render(projList)
+        } 
+        else {
+            alert('Task needs a name')
+        }
+        
     }
 
     /*
@@ -304,9 +329,13 @@ const DOM = ((doc) => {
 
     const init = (projList) => {
         let add_project = doc.getElementById('add-project')
+        let add_task = doc.getElementById('task-form-submit')
 
         add_project.addEventListener('click', function() {
             addProjectListener(projList)
+        })
+        add_task.addEventListener('click', function() {
+            addTaskListener(projList)
         })
 
         render(projList)
@@ -322,131 +351,4 @@ const DOM = ((doc) => {
 })(document);
 
 export default DOM;
-  /*
-
-  function loadPage() {
-    //returns an element that contains a skeleton of the page
-    //ie Nav Bar, content frame, and footer
-
-    let title = createTitle()
-    let nav = createNav()
-    let frame = createContentWindow()
-    let footer = createFooter()
-    let spacer = createSpacer()
-    let page = document.createElement('div')
-
-    page.appendChild(nav)
-    page.appendChild(title)
-    page.appendChild(frame)
-    page.appendChild(spacer)
-    page.appendChild(footer)
-
-    return page
-}
-
-//Title Creator
-function createTitle() {
-    //Show restaurant name
-    let h2 = document.createElement('h2')
-    let restaurantName = 'The Rusty Spatula(r)'
-
-    h2.id = 'title'
-    h2.innerText = restaurantName
-
-    return h2
-}
-
-
-//Navbar function and helpers
-function createNav() {
-    //creates a navbar with three buttons
-    let nav = document.createElement('nav')
-    let tabs = ['Home','Menu','Contact']
-
-    nav.classList.add('flex-container')
-    tabs.forEach( (tab) => {
-        let btn = createButton(tab)
-        nav.appendChild(btn)
-    })
-
-    return nav
-}
-
-function createButton(name) {
-    //makes a button named name and has a lowercase name as the id
-    let id = name.toLowerCase()
-    let btn = document.createElement('button')
-
-    btn.id = id
-    btn.innerText = name
-
-    return btn
-}
-
-//ContentWindow function
-function createContentWindow() {
-    let content = document.createElement('div')
-
-    content.id = 'content-frame'
-
-    return content
-}
-
-//Create footer 
-function createFooter() {
-    //creates footer content and positions it.
-    let footer = document.createElement('footer')
-    let p = document.createElement('p')
-
-    p.innerText = '*tetanus shots not included'
-    p.style['text-align'] = 'center'
-    p.style.margin = 'auto'
-
-    footer.appendChild(p)
-
-    return footer
-}
-
-LOL
-LOL
-LOL
-LOL
- I HATE THE NEW LOOK
- LOL
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Create spacer 
-function createSpacer() {
-    //creates spacer element
-    let spacer = document.createElement('div')
-    spacer.classList.add('spacer')
-    return spacer
-}
-
-export default loadPage;
-*/
+ 

@@ -141,6 +141,11 @@ const ProjectList = () => {
         remove(i)
     }
 
+    const getActive = () => {
+        let i_active = getIndexOf('active',1)
+        return getItem('Project',i_active)
+    }
+
     return {
         add,
         addProject,
@@ -148,7 +153,8 @@ const ProjectList = () => {
         len,
         getItem,
         getIndexOf,
-        del
+        del,
+        getActive
     }
 }
 

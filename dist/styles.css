@@ -291,6 +291,11 @@ span{
     color: var(--paleyellow);
 }
 
-.task-form-submit {
+#task-form-submit {
     font-size: 1.5em;
+    color: var(--task-button);
+}
+
+#task-form-submit:hover {
+    color: var(--comment-green);
 }
