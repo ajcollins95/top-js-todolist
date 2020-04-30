@@ -114,7 +114,7 @@ const DOM = ((doc) => {
         const newData = {name, date, isPriority, description}
         data.task.updateTask(newData)
         closeEdit()
-        render(data.projList)
+        
         
     }
 
@@ -132,6 +132,7 @@ const DOM = ((doc) => {
         
         exit.addEventListener('click', function(){
             closeEdit()
+            render(data.projList)
         })
         
         save.addEventListener('click', function(){
@@ -151,7 +152,7 @@ const DOM = ((doc) => {
         form.children[0].children[0].children[0].value = props.name
         double.children[1].children[0].value = format(props.date, 'yyyy-MM-dd')
         double.children[0].children[0].checked = props.isPriority
-        form.children[0].children[2].children[0].innerText = props.description
+        form.children[0].children[2].children[0].value = props.description
 
         
     }
