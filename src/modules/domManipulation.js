@@ -328,11 +328,12 @@ const DOM = ((doc) => {
 
         let checkbox = createCheckbox(task)
         let name = createName(task)
-    
+        console.log('format',props.date)
         let date = createElem({
             class: 'task-date', 
             text: format(props.date, 'MMM. dd')
         })
+        
 
         let menu = createElem({
             class: 'task-edit', 
@@ -382,6 +383,7 @@ const DOM = ((doc) => {
 
     const render = (projList) => {
         //clear areas where data gets added
+        
         clear()
         //loop through projects, draw tasks for active project
         for (let i = 0; i < projList.len(); i++) {
@@ -396,6 +398,7 @@ const DOM = ((doc) => {
             }
         }
         renderButtons()
+        //projList.save()
 
         //projList.renderItems()
     }

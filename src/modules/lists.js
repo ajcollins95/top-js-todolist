@@ -1,5 +1,6 @@
 import { Task, Project } from './appItems'
-import { compareAsc } from 'date-fns'
+import { format, compareAsc } from 'date-fns'
+
 
 //List Factory function
 //List is a 'parent class' to tasklist and projectlist
@@ -161,6 +162,7 @@ const ProjectList = () => {
             for (let i = 0; i < task_list.len(); i++) {
                 let task = task_list.getItem('Task',i)
                 let task_props = task.getProps() 
+                task_props.date = format(task_props.date, 'yyyy-MM-dd') 
                 list_of_tasks.push(task_props)
             }
             
@@ -180,6 +182,7 @@ const ProjectList = () => {
 
     const save = () => {
         let projects = objectify()
+        console.log('from save',projects)
         localStorage.setItem('saveData', JSON.stringify(projects))
     }
 

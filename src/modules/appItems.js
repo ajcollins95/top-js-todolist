@@ -109,6 +109,7 @@ const Task = (arg) => {
         }
         for (const prop in defaults) {
             const val = args[prop] || defaults[prop]
+            //if (prop=='date'){console.log(val)}
             set(prop,val)
           }
     }
