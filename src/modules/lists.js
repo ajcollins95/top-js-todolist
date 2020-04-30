@@ -196,7 +196,8 @@ const ProjectList = () => {
         getIndexOf,
         del,
         getActive,
-        save
+        save,
+        clearSave
     }
 }
 

@@ -24,7 +24,8 @@ const application = (() => {
 
     const _load = (data) => {
         let projects = ProjectList()
-        
+        console.log('I run')
+        projects.clearSave()
     }
 
     const _makeDefault = () => {

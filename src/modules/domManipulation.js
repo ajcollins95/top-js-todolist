@@ -243,8 +243,13 @@ const DOM = ((doc) => {
         let project_list = doc.getElementById('project-list')
         let task_list = doc.getElementById('task-list')
         let form_content = doc.getElementsByClassName('popup-form-content')[0]
+        let task_form = doc.getElementById('task-form-name')
+        let project_form = doc.getElementById('project-form')
+
 
         form_content.removeChild(doc.getElementsByClassName('buttons')[0])
+        task_form.value = ''
+        project_form.value = ''
         remove_children(project_list)
         remove_children(task_list)
     }
