@@ -29,6 +29,10 @@ const DOM = ((doc) => {
             data.task.toggleComplete()
             render(data.projList)
         })
+        task_right.children[1].addEventListener('click', function(){
+            handleEdit(data)
+            //render(data.projList)
+        })
         //console.log(task_left)
     }
     
@@ -98,9 +102,63 @@ const DOM = ((doc) => {
         
     }
 
+    
+    const handleSave = (data) => {
+        const form = doc.getElementById('popup-form')
+        const props = data.task.getProps()
+        const double = doc.getElementsByClassName('double-input')[0]
+
+        let name = form.children[0].children[0].children[0].value
+        let date = new Date(double.children[1].children[0].value)
+        date.setDate(date.getDate() + 1)
+        console.log(double.children[1].children[0].value,date)
+        let isPriority = double.children[0].children[0].checked
+        let description = form.children[0].children[2].children[0].value
+
+        const newData = {name, date, isPriority, description}
+        data.task.updateTask(newData)
+        closeEdit()
+        render(data.projList)
+        
+    }
+
+    const closeEdit = () => {
+        const form = doc.getElementById('popup-form')
+        form.setAttribute('style','display: none;')
+    }
+
+    const handleEdit = (data) => {
+        const form = doc.getElementById('popup-form')
+        const exit = doc.getElementById('close-button')
+        const save = doc.getElementById('save-button')
+        form.setAttribute('style','display: flex;')
+        populateForm(form,data)
+        
+        exit.addEventListener('click', function(){
+            closeEdit()
+        })
+        
+        save.addEventListener('click', function(){
+            handleSave(data)
+        })
+
+    }
+
     /*
     DOM HELPER FUNCTIONS
     */
+
+    const populateForm = (form, data) => {
+        const props = data.task.getProps()
+        const double = doc.getElementsByClassName('double-input')[0]
+
+        form.children[0].children[0].children[0].value = props.name
+        double.children[1].children[0].value = format(props.date, 'yyyy-MM-dd')
+        double.children[0].children[0].checked = props.isPriority
+        form.children[0].children[2].children[0].innerText = props.description
+
+        
+    }
 
     const switchActive = (projList, project) => {
         //switches active project
@@ -182,7 +240,9 @@ const DOM = ((doc) => {
         //clears all elements from task and project area
         let project_list = doc.getElementById('project-list')
         let task_list = doc.getElementById('task-list')
+        let form_content = doc.getElementsByClassName('popup-form-content')[0]
 
+        form_content.removeChild(doc.getElementsByClassName('buttons')[0])
         remove_children(project_list)
         remove_children(task_list)
     }
@@ -191,7 +251,29 @@ const DOM = ((doc) => {
     DOM RENDER FUNCTIONS
     */
 
-
+    const renderButtons = () => {
+        const content = doc.getElementsByClassName('popup-form-content')[0]
+        let buttons = createElem({
+            class: 'buttons', 
+        })
+        let wrapper = createElem({
+            class: 'button-wrapper', 
+        })
+        let save = createElem({
+            tag: 'button',
+            id: 'save-button', 
+            text: 'save'
+        })
+        let exit = createElem({
+            tag: 'button',
+            id: 'close-button', 
+            text: 'exit'
+        })
+        wrapper.appendChild(save)
+        wrapper.appendChild(exit)
+        buttons.appendChild(wrapper)
+        content.appendChild(buttons)
+    }
 
     const renderProject = (projList, project) => {
         //makes project node
@@ -300,6 +382,7 @@ const DOM = ((doc) => {
                 }
             }
         }
+        renderButtons()
 
         //projList.renderItems()
     }

@@ -103,7 +103,7 @@ const Task = (arg) => {
         setName(args.name)
         let defaults = {
             date: new Date(), //needs help from date fns
-            description: '',
+            description: '(optional description)',
             isComplete: false,
             isPriority: false,
         }
@@ -125,12 +125,21 @@ const Task = (arg) => {
           }
     }
 
+    const updateTask = (args) => {
+        for (const prop in args) {
+            set(prop,args[prop])
+        }
+    }
+
+
+
     initTask(arg)
 
     return {
         getProps,
         showItem,
-        toggleComplete
+        toggleComplete,
+        updateTask
     }
 }
 

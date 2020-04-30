@@ -299,3 +299,70 @@ span{
 #task-form-submit:hover {
     color: var(--comment-green);
 }
+
+#popup-form {
+    z-index: 88;
+    position: fixed;
+    display: none;
+    width: 20%;
+    background-color: var(--projbg);
+    flex-direction: column;
+    left: 45%;
+    top: 15%;
+    transform: translate(-45%,5%);
+    margin: auto;
+    border: solid var(--task-button) 3px;
+    border-radius: 5px;
+    padding: 10px;
+
+}
+
+#popup-form-content {
+    position: relative;
+}
+
+#popup-form div {
+    margin: 10px;
+}
+
+#popup-form input, textarea {
+    background-color: var(--proj);
+}
+
+#popup-form .double-input {
+    display: flex;
+    justify-content: space-between;
+}
+
+#popup-form .form-title  {
+    width: 100%;
+    text-align: center;
+}
+
+textarea {
+    border: none;
+    width: 100%;
+}
+
+#popup-form input[type=text], 
+#popup-form input[type=date], 
+#popup-form textarea {
+    font-family: "Consolas", 'Courier New', monospace;
+    color: var(--cinnabar);
+}
+
+#popup-form input[type=text], 
+#popup-form input[type=date] {
+    font-size: 1.5em;
+}
+
+#popup-form .buttons {
+    display: flex;
+    justify-content: center;
+}
+
+#popup-form .button-wrapper {
+    display: flex;
+    justify-content: space-between;
+    width: 80%;
+}
