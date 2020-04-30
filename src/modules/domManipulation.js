@@ -111,7 +111,7 @@ const DOM = ((doc) => {
         let name = form.children[0].children[0].children[0].value
         let date = new Date(double.children[1].children[0].value)
         date.setDate(date.getDate() + 1)
-        console.log(double.children[1].children[0].value,date)
+        //console.log(double.children[1].children[0].value,date)
         let isPriority = double.children[0].children[0].checked
         let description = form.children[0].children[2].children[0].value
 
