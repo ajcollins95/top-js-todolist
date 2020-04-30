@@ -1,4 +1,5 @@
 import { Task, Project } from './appItems'
+import { compareAsc } from 'date-fns'
 
 //List Factory function
 //List is a 'parent class' to tasklist and projectlist
@@ -32,9 +33,6 @@ const List = () => {
 
     const getItem = (type, i) => {
         let item = _data[i]
-        /*
-        console.log(`given type ${type}`)
-        console.log(`found type ${item.getProps().type}`)*/
 
         if (item.getProps().type == type) {
             return item
@@ -48,7 +46,6 @@ const List = () => {
     const getIndexOf = (prop, val, start = 0) => {
         //finds index of first occurence where value is found for prop
         for (let i = start; i < len(); i++) {
-            //console.log(`active = ${_data[i].getProps()[prop]}`)
             if (_data[i].getProps()[prop] == val) {
                 return i
             }
@@ -110,7 +107,6 @@ const ProjectList = () => {
     const {
         addToList, 
         show,
-        renderItems,
         getIndexOf,
         len,
         getItem,
@@ -146,6 +142,39 @@ const ProjectList = () => {
         return getItem('Project',i_active)
     }
 
+    const objectify = () => {
+        let data = []
+        for (let i = 0; i < len(); i++) {
+            let project = getItem('Project',i)
+            let project_props = project.getProps()
+            let task_list = project_props.list
+            let list_of_tasks = []
+
+            for (let i = 0; i < task_list.len(); i++) {
+                let task = task_list.getItem('Task',i)
+                let task_props = task.getProps() 
+                list_of_tasks.push(task_props)
+            }
+            
+            data.push(
+                {
+                    active: project_props.active,
+                    list: list_of_tasks,
+                    name: project_props.name,
+                    type: project_props.type
+                }
+            )
+        }
+
+        return (data)
+
+    }
+
+    const save = () => {
+        let projects = objectify()
+        console.log(projects)
+    }
+
     return {
         add,
         addProject,
@@ -154,7 +183,8 @@ const ProjectList = () => {
         getItem,
         getIndexOf,
         del,
-        getActive
+        getActive,
+        save
     }
 }
 

@@ -33,7 +33,6 @@ const DOM = ((doc) => {
             handleEdit(data)
             //render(data.projList)
         })
-        //console.log(task_left)
     }
     
     const switchProject = (data) => {
@@ -51,7 +50,6 @@ const DOM = ((doc) => {
 
         }
         //get next active proj
-        console.log(active)
         let i = data.projList.getIndexOf('name', active.firstChild.innerText)
         let activeProject = data.projList.getItem('Project', i)
 
@@ -64,7 +62,6 @@ const DOM = ((doc) => {
     const addProjectListener = (projList) => {
         let form = doc.getElementById('project-form')
         let text = form.value
-        console.log(text)
         if(text.length == 0) {
             alert('Project needs a name')
         } else {
@@ -111,7 +108,6 @@ const DOM = ((doc) => {
         let name = form.children[0].children[0].children[0].value
         let date = new Date(double.children[1].children[0].value)
         date.setDate(date.getDate() + 1)
-        //console.log(double.children[1].children[0].value,date)
         let isPriority = double.children[0].children[0].checked
         let description = form.children[0].children[2].children[0].value
 
@@ -164,12 +160,10 @@ const DOM = ((doc) => {
         //switches active project
         let clicked = project
         let activeIndex = projList.getIndexOf('active', 1)
-        //console.log(activeIndex)
         let active = projList.getItem('Project', activeIndex)
         
         active.setActive(0)
         clicked.setActive(1)
-        //console.log('i get here')
         render(projList)
     }
 
@@ -372,7 +366,6 @@ const DOM = ((doc) => {
         //loop through projects, draw tasks for active project
         for (let i = 0; i < projList.len(); i++) {
             let project = projList.getItem('Project', i)
-            //console.log(project.getProps().name)
             renderProject(projList, project)
             //when project active, draw its tasks
             if (project.getProps().active) {
