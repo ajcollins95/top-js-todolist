@@ -1,5 +1,6 @@
 import Elem from './element';
 import {format, compareAsc} from 'date-fns';
+import Edit from '../edit.svg'
 
 
 //DOM Manipulator module for HTML display
@@ -141,6 +142,7 @@ const DOM = ((doc) => {
         return name
     }
 
+
     const createTaskElems = () => {
         let l = 1;
     }
@@ -211,9 +213,10 @@ const DOM = ((doc) => {
             class: 'task-date', 
             text: format(props.date, 'MMM. dd')
         })
+
         let menu = createElem({
-            class: 'task-menu', 
-            text: '(edit)'
+            class: 'task-edit', 
+            text: 'i'
         })
 
         let task_left = createElem({
@@ -244,9 +247,12 @@ const DOM = ((doc) => {
             task_node
         }
 
-        if (task.getProps().isComplete) {
+        if (props.isComplete) {
             task_node.classList.add('complete')
+        } else if (props.isPriority) {
+            task_node.classList.add('priority')
         }
+
         attachTaskListeners(task_data)
         
 

@@ -42,6 +42,7 @@ body {
     padding: 0;
     margin: 0;
     font-size: 1em;
+    cursor: default;
 }
 
 input {
@@ -109,12 +110,12 @@ header {
     margin: 0 20px;
     border-radius: 25px;
     cursor: default;
-    color: var(--proj-button);
+    color: var(--task-button);
 }
 
 #add-project:hover {
     /*background-color: rgb(53, 53, 53);*/
-    color: forestgreen;
+    color:var(--comment-green);
 }
 
 .project-form > input {
@@ -149,12 +150,12 @@ header {
     padding:10px 20px;
     cursor: default;
     font-size: 1.5em;
-    color: var(--proj-button);
+    color: var(--task-button);
 
 }
 
 .del-button:hover {
-    color: var(--lava)
+    color: var(--cinnabar)
 }
 
 .project-name:hover {
@@ -186,14 +187,23 @@ header {
     padding: 0;
 }
 
-.task-form > input {
+.task-form input {
     /*affects input form*/
     font-size: 1em;
     font-family: "Consolas", 'Courier New', monospace;
     caret-color: var(--cinnabar);
     color: var(--cinnabar);
     background-color: var(--taskbg);
-    margin-left: 80px
+}
+
+.task-form {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 80px;
+}
+
+.task-form-right {
+    display: flex;
 }
 
 .task {
@@ -251,8 +261,6 @@ span{
     justify-content: space-around;
 }
 
-
-
 .complete {
     color: red;
 }
@@ -262,4 +270,27 @@ span{
     margin-bottom: 10px;
     font-size: 2em;
     box-shadow: 2px 5px 3px black;
+}
+
+.task-edit {
+    background-color: var(--linen);
+    border-radius: 20px;
+    margin-left: 1em;
+    height: 1em;
+    width: 1em;
+    color: var(--task-button);
+    text-align: center;
+    cursor: default;
+}
+
+.task-edit:hover {
+    background-color: var(--cinnabar);
+}
+
+.priority {
+    color: var(--paleyellow);
+}
+
+.task-form-submit {
+    font-size: 1.5em;
 }
